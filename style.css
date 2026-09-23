@@ -1,0 +1,327 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Special+Elite&display=swap');
+
+:root{
+  --bg: #0b0d0a;
+  --bg-2: #14170f;
+  --text: #d8d3c2;
+  --text-dim: #85806e;
+  --flame: #e6a23c;
+  --flame-dim: #6b4d1e;
+  --blood: #6e1414;
+  --blood-bright: #b32020;
+  --escape: #3c6e71;
+  --escape-bright: #7fb6b9;
+}
+
+*{ margin:10; padding:0; box-sizing:border-box; }
+
+html, body{
+  min-height:100%;
+  background: linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 60%, #090a07 100%);
+  color: var(--text);
+  font-family: 'Crimson Pro', Georgia, 'Times New Roman', serif;
+}
+
+body{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding: 6vh 1.25rem 4rem;
+}
+/* Efecto de niebla */
+.fog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(50,50,50,0.15) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(50,50,50,0.15) 0%, transparent 40%);
+  pointer-events: none;
+  animation: drift 20s infinite alternate;
+  z-index: 0;
+}
+
+@keyframes drift {
+  from { transform: translateX(-20px); }
+  to { transform: translateX(20px); }
+}
+
+.container {
+  max-width: 700px;
+  width: 100%;
+  background: rgba(15, 10, 10, 0.9);
+  border: 2px solid #4a0000;
+  border-radius: 12px;
+  box-shadow: 0 0 40px rgba(150, 0, 0, 0.4), inset 0 0 30px rgba(0,0,0,0.8);
+  padding: 30px;
+  position: relative;
+  z-index: 1;
+}
+/* ---------- encabezado fijo, siempre visible ---------- */
+
+.site-header{
+  width:100%;
+  max-width: 640px;
+  text-align:center;
+  margin-bottom: 1 rem;
+}
+
+
+
+.site-header {
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chicle&family=Special+Elite&display=swap" rel="stylesheet">
+  font-size: 1.5rem;
+  color: #b30000;
+  text-shadow: 0 0 10px #ff0000, 0 0 20px #660000;
+  letter-spacing: 2px;
+  animation: flicker 3s infinite;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  45% { opacity: 1; }
+  46% { opacity: 0.6; }
+  47% { opacity: 1; }
+  48% { opacity: 0.4; }
+  49% { opacity: 1; }
+}
+
+
+
+/* ---------- contenedor de la historia ---------- */
+
+.story{
+  width:100%;
+  max-width: 640px;
+  position:relative;
+}
+
+/* ---------- lógica de "páginas" con :target (sin JavaScript) ---------- */
+
+.node{
+  display:none;
+}
+
+.node:target{
+  display:block;
+  animation: reveal 3s ease;
+}
+
+/* el nodo inicial se ve por defecto, sin necesidad de ancla en la URL */
+#n1-1{
+  display:block;
+}
+
+/* pero se oculta en cuanto cualquier otro nodo pasa a ser el destino (#target) */
+#n2-1:target ~ #n1-1,
+#n2-2:target ~ #n1-1,
+#n3-1:target ~ #n1-1,
+#n3-2:target ~ #n1-1,
+#n3-3:target ~ #n1-1,
+#n4-1:target ~ #n1-1,
+#n4-2:target ~ #n1-1,
+#n5-1:target ~ #n1-1,
+#n5-2:target ~ #n1-1,
+#n5-3:target ~ #n1-1,
+#n5-4:target ~ #n1-1{
+  display:none;
+}
+
+@keyframes reveal{
+  from{ opacity:0; transform: translateY(8px); }
+  to{ opacity:1; transform:none; }
+}
+
+/* ---------- contenido de cada nodo ---------- */
+
+
+
+.node h2{
+  font-weight:600;
+  font-size: clamp(1.6rem, 4.5vw, 2.2rem);
+  color:#efeadd;
+  margin-bottom: 1.2rem;
+  max-width: 18ch;
+}
+
+.node p{
+  font-size: 1.05rem;
+  line-height: 1.85;
+  max-width: 60ch;
+  margin-bottom: 1.1rem;
+}
+
+.ending-tag{
+  font-family:'Special Elite', 'Courier New', monospace;
+  font-size: .78rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin: 1.6rem 0 .4rem;
+}
+
+.ending--die .ending-tag{ color: var(--blood-bright); }
+.ending--die h2{ color: var(--blood-bright); }
+
+.ending--live .ending-tag{ color: var(--escape-bright); }
+.ending--live h2{ color: var(--escape-bright); }
+
+/* ---------- opciones / elecciones ---------- */
+
+.choices{
+  margin-top: 2.2rem;
+  display:flex;
+  flex-wrap:wrap;
+  gap: .9rem;
+  
+}
+
+.choice{
+  flex: 1 1 220px;
+  display:block;
+  text-align:center;
+  text-decoration:none;
+  color: var(--text);
+  border: 1px solid rgba(216,211,194,0.28);
+  padding: .95rem 1.5rem;
+  font-family:'Crimson Pro', Georgia, serif;
+  font-size: 1.02rem;
+  letter-spacing:.01em;
+  transition: border-color .25s ease, background .25s ease;
+  background: linear-gradient(135deg, #3a0000, #1a0000);
+  color: #e0e0e0;
+  border: 1px solid #660000;
+  padding: 14px 20px;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Roboto', sans-serif;
+  text-align: left;
+  
+}
+
+.choice:hover,
+.choice:focus-visible{
+   background: linear-gradient(135deg, #660000, #330000);
+  border-color: #ff0000;
+  box-shadow: 0 0 15px rgba(255,0,0,0.5);
+  transform: translateX(5px);
+}
+
+.choice .k{
+  display:block;
+  font-family:'Special Elite','Courier New',monospace;
+  font-size:.62rem;
+  letter-spacing:.09em;
+  color: var(--text-dim);
+  margin-bottom:.35rem;
+}
+footer {
+  text-align: center;
+  margin-top: 25px;
+  color: #666;
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+.again{
+  display:inline-block;
+  color: var(--text-dim);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  font-family:'Special Elite','Courier New',monospace;
+  font-size: .78rem;
+  letter-spacing: .05em;
+}
+
+.again:hover{ color: var(--text); }
+
+/* ---------- paneles "audiovisuales" decorativos (solo CSS) ---------- */
+
+.audiovisual{
+  position:relative;
+  width:100%;
+  aspect-ratio: 16 / 8;
+  margin: 1.4rem 0 1.6rem;
+  overflow:hidden;
+  border: 1px solid rgba(216,211,194,0.18);
+  display:flex;
+  align-items:flex-end;
+  padding: .9rem 1.1rem;
+}
+
+.audiovisual-label{
+  font-family:'Special Elite','Courier New',monospace;
+  font-size: .68rem;
+  letter-spacing:.08em;
+  color: rgba(216,211,194,0.75);
+  background: rgba(0,0,0,0.35);
+  padding: .3rem .6rem;
+}
+
+.audiovisual--lago{
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 100%, rgba(230,162,60,0.18), transparent 70%),
+    linear-gradient(180deg, #1a2a2b 0%, #0c1414 55%, #060a08 100%);
+}
+.audiovisual--lago::before{
+  content:"";
+  position:absolute; inset:0;
+  background:
+    repeating-linear-gradient(180deg, rgba(255,255,255,0.03) 0 1px, transparent 1px 6px);
+  mix-blend-mode: overlay;
+}
+
+.audiovisual--asesino{
+  background: linear-gradient(180deg, #170707 0%, #0a0303 70%);
+}
+.audiovisual--asesino::before{
+  content:"";
+  position:absolute;
+  left:50%; top:38%;
+  width: 46%;
+  aspect-ratio: 1 / 1.5;
+  transform: translate(-50%,-50%);
+  background: #050202;
+  border-radius: 45% 45% 40% 40%;
+  box-shadow: 0 0 60px 10px rgba(179,32,32,0.15);
+}
+.audiovisual--asesino::after{
+  content:"";
+  position:absolute;
+  left:50%; top:60%;
+  width: 3px; height: 34%;
+  background: #050202;
+  transform: translate(-50%, 0) rotate(18deg);
+  box-shadow: 30px 6px 0 -1px #050202;
+}
+
+.audiovisual--victima{
+  background: linear-gradient(180deg, #0f1108 0%, #070805 75%);
+}
+.audiovisual--victima::before{
+  content:"";
+  position:absolute;
+  left:50%; top:44%;
+  width: 30%;
+  aspect-ratio: 1 / 1.6;
+  transform: translate(-50%,-50%);
+  border: 2px solid rgba(230,162,60,0.35);
+  border-radius: 4px;
+}
+
+/* ---------- accesibilidad y responsive ---------- */
+
+@media (prefers-reduced-motion: reduce){
+  .node:target{ animation: none; }
+}
+
+@media (max-width: 480px){
+  .choices{ flex-direction: column; }
+  .choice{ flex: 1 1 auto; }
+}
